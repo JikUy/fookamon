@@ -1,45 +1,3 @@
-// Mapping characters to their respective image filenames
-const charToImageMap = {
-  'a': 'a.jpg',
-  'b': 'b.jpg',
-  'c': 'c.jpg',
-  'd': 'd.jpg',
-  'e': 'e.jpg',
-  'f': 'f.jpg',
-  'g': 'g.jpg',
-  'h': 'h.jpg',
-  'i': 'i.jpg',
-  'j': 'j.jpg',
-  'k': 'k.jpg',
-  'l': 'l.jpg',
-  'm': 'm.jpg',
-  'n': 'n.jpg',
-  'o': 'o.jpg',
-  'p': 'p.jpg',
-  'q': 'q.jpg',
-  'r': 'r.jpg',
-  's': 's.jpg',
-  't': 't.jpg',
-  'u': 'u.jpg',
-  'v': 'v.jpg',
-  'w': 'w.jpg',
-  'x': 'x.jpg',
-  'y': 'y.jpg',
-  'z': 'z.jpg',
-  '0': '0.jpg',
-  '1': '1.jpg',
-  '2': '2.jpg',
-  '3': '3.jpg',
-  '4': '4.jpg',
-  '5': '5.jpg',
-  '6': '6.jpg',
-  '7': '7.jpg',
-  '8': '8.jpg',
-  '9': '9.jpg',
-  '$': 'dollar.jpg',
-  ' ': 'space.jpg',  // Optional: add an image for space if you want
-};
-
 // Function to translate text into images
 function translateText() {
   const inputText = document.getElementById('inputText').value;
@@ -50,14 +8,65 @@ function translateText() {
 
   // Loop through each character in the input text
   for (let char of inputText.toLowerCase()) {
-    // Check if there's a corresponding image for the character
-    if (charToImageMap[char]) {
+    // Check if the character is alphanumeric or a special character
+    const imgSrc = getImageForCharacter(char);
+
+    if (imgSrc) {
+      // Create an image element and append it to the image container
       const img = document.createElement('img');
-      img.src = `images/${charToImageMap[char]}`; // Ensure images are in the "images" folder
+      img.src = imgSrc;  // Image source based on the character
       img.alt = char;
       imageContainer.appendChild(img);
     } else {
       console.warn(`No image found for character: ${char}`);
     }
   }
+}
+
+// Function to return the image path for a character
+function getImageForCharacter(char) {
+  // Character to image file name mapping
+  const charToImageMap = {
+    'a': 'img/a.jpg',
+    'b': 'img/b.jpg',
+    'c': 'img/c.jpg',
+    'd': 'img/d.jpg',
+    'e': 'img/e.jpg',
+    'f': 'img/f.jpg',
+    'g': 'img/g.jpg',
+    'h': 'img/h.jpg',
+    'i': 'img/i.jpg',
+    'j': 'img/j.jpg',
+    'k': 'img/k.jpg',
+    'l': 'img/l.jpg',
+    'm': 'img/m.jpg',
+    'n': 'img/n.jpg',
+    'o': 'img/o.jpg',
+    'p': 'img/p.jpg',
+    'q': 'img/q.jpg',
+    'r': 'img/r.jpg',
+    's': 'img/s.jpg',
+    't': 'img/t.jpg',
+    'u': 'img/u.jpg',
+    'v': 'img/v.jpg',
+    'w': 'img/w.jpg',
+    'x': 'img/x.jpg',
+    'y': 'img/y.jpg',
+    'z': 'img/z.jpg',
+    '0': 'img/0.jpg',
+    '1': 'img/1.jpg',
+    '2': 'img/2.jpg',
+    '3': 'img/3.jpg',
+    '4': 'img/4.jpg',
+    '5': 'img/5.jpg',
+    '6': 'img/6.jpg',
+    '7': 'img/7.jpg',
+    '8': 'img/8.jpg',
+    '9': 'img/9.jpg',
+    '$': 'img/dollar.jpg',
+    ' ': 'img/space.jpg',  // Optional: space image if you want
+  };
+
+  // Return the image file path based on the character
+  return charToImageMap[char] || null; // Return null if no mapping is found
 }
